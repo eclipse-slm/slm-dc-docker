@@ -1,0 +1,20 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: yes
+  become: yes
+  tasks:
+    - name: Include vars file
+      ansible.builtin.include_vars:
+        file: ./vars/main.yml
+
+    - name: Run Linux verify
+      when: ansible_os_family != "Windows"
+      ansible.builtin.include_tasks: verify-linux.yml
+
+    - name: Run Windows verify
+      when: ansible_os_family == "Windows"
+      ansible.builtin.include_tasks: verify-windows.yml
+

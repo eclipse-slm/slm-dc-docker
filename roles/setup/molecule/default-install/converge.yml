@@ -1,0 +1,18 @@
+---
+- name: Converge
+  hosts: ssh
+  gather_facts: yes
+  become: yes
+  tasks:
+    - name: "Include docker - install"
+      ansible.builtin.include_role:
+        name: "docker"
+
+- name: Install docker (winrm)
+  hosts: WinRM
+  gather_facts: yes
+  become: yes
+  tasks:
+    - name: "Include docker - install"
+      ansible.builtin.include_role:
+        name: "docker"

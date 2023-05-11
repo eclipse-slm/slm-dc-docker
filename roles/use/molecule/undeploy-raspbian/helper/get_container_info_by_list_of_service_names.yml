@@ -1,0 +1,14 @@
+---
+- assert:
+    that:
+      - service_id | default('') | length > 0
+      - item | default('') | length > 0 # service_name according to docker-compose file
+
+- name: Get infos on container
+  community.docker.docker_container_info:
+    name: "{{ service_id }}_{{ item }}_1"
+  register: container_info
+
+- name: Add container info to list
+  set_fact:
+    container_info_list: "{{ container_info_list | default([]) + [ container_info ] }}"

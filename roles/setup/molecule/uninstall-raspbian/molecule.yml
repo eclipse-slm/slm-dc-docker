@@ -1,0 +1,19 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: delegated
+platforms:
+  - name: raspi
+    address: ${RASPI_ADDRESS}
+    user: ${RASPI_USER}
+    password: ${RASPI_PASSWORD}
+    groups: ['ssh']
+provisioner:
+  name: ansible
+  playbooks:
+    create: ../default-raspbian/create.yml
+    prepare: ../install-raspbian/converge.yml
+    destroy: ../default-raspbian/destroy.yml
+verifier:
+  name: ansible

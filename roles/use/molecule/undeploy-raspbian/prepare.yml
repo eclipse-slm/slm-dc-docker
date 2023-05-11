@@ -1,0 +1,31 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: yes
+  become: yes
+  serial: "{{ lookup('env', 'ANSIBLE_SERIAL') }}"
+  tasks:
+    - name: "Include setup - install"
+      include_role:
+        name: "setup"
+        tasks_from: install.yml
+
+    - name: Include vars file
+      include_vars:
+        file: ./vars/main.yml
+
+    - name: "Include use - deploy (service-1)"
+      include_role:
+        name: "use"
+        tasks_from: deploy.yml
+      vars:
+        service_id: "{{ service_id_1 }}"
+        docker_compose_file: "{{ docker_compose_file_1 }}"
+
+    - name: "Include use - deploy (service-2)"
+      include_role:
+        name: "use"
+        tasks_from: deploy.yml
+      vars:
+        service_id: "{{ service_id_2 }}"
+        docker_compose_file: "{{ docker_compose_file_2 }}"

@@ -1,0 +1,15 @@
+---
+- name: "Check required variables"
+  assert:
+    that: "{{ item.name }} is defined"
+    fail_msg: "Missing variable '{{ item.name }}': {{ item.description }}"
+  with_items:
+    - { name: "service_id",             description: "Id of the service instance that will be deployed." }
+
+- name: Undeploy for Linux
+  when: ansible_os_family != "Windows"
+  ansible.builtin.include_tasks: dist-specific/undeploy-linux.yml
+
+- name: Undeploy for Windows
+  when: ansible_os_family == "Windows"
+  ansible.builtin.include_tasks: dist-specific/undeploy-win.yml

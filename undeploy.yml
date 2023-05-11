@@ -1,0 +1,26 @@
+---
+- name: "Create inventory with target host(s)"
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: "Check required variables"
+      assert:
+        that: "{{ item.name }} is defined"
+        fail_msg: "Missing variable '{{ item.name }}': {{ item.description }}"
+      with_items:
+        - { name: "service_id",             description: "Id of the service instance that should be removed." }
+
+    - name: Use inventory Helper to setup ansible inventory
+      ansible.builtin.include_role:
+        name: inventory_helper
+
+- name: Undeploy container on docker host
+  hosts: all
+  gather_facts: yes
+  become: yes
+  tasks:
+    - name: "Include use - undeploy"
+      include_role:
+        name: "use"
+        tasks_from: undeploy.yml

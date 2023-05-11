@@ -1,0 +1,17 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: delegated
+platforms:
+  - name: fabos-edge-pi-01
+    address: ${RASPI_ADDRESS}
+    user: ${RASPI_USER}
+    password: ${RASPI_PASSWORD}
+provisioner:
+  name: ansible
+  playbooks:
+    create: ../../../setup/molecule/default-raspbian/create.yml
+    destroy: ../../../setup/molecule/default-raspbian/destroy.yml
+verifier:
+  name: ansible
