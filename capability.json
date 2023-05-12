@@ -11,7 +11,7 @@
     "DEPLOY": {
       "capabilityActionClass": "AwxCapabilityAction",
       "capabilityActionType": "DEPLOY",
-      "awxRepo": "https://github.com/FabOS-AI/fabos-slm-dc-docker.git",
+      "awxRepo": "https://github.com/eclipse-slm/slm-dc-docker",
       "awxBranch": "develop",
       "playbook": "deploy.yml",
       "connectionTypes": ["ssh", "WinSsh"]
@@ -19,7 +19,7 @@
     "UNINSTALL": {
       "capabilityActionClass": "AwxCapabilityAction",
       "capabilityActionType": "UNINSTALL",
-      "awxRepo": "https://github.com/FabOS-AI/fabos-slm-dc-docker.git",
+      "awxRepo": "https://github.com/eclipse-slm/slm-dc-docker",
       "awxBranch": "develop",
       "playbook": "uninstall.yml",
       "connectionTypes": ["ssh", "WinSsh"]
@@ -27,7 +27,7 @@
     "INSTALL": {
       "capabilityActionClass": "AwxCapabilityAction",
       "capabilityActionType": "INSTALL",
-      "awxRepo": "https://github.com/FabOS-AI/fabos-slm-dc-docker.git",
+      "awxRepo": "https://github.com/eclipse-slm/slm-dc-docker",
       "awxBranch": "develop",
       "playbook": "install.yml",
       "connectionTypes": ["ssh", "WinSsh"]
@@ -35,7 +35,7 @@
     "UNDEPLOY": {
       "capabilityActionClass": "AwxCapabilityAction",
       "capabilityActionType": "UNDEPLOY",
-      "awxRepo": "https://github.com/FabOS-AI/fabos-slm-dc-docker.git",
+      "awxRepo": "https://github.com/eclipse-slm/slm-dc-docker",
       "awxBranch": "develop",
       "playbook": "undeploy.yml",
       "connectionTypes": ["ssh", "WinSsh"]
