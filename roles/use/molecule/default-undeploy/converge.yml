@@ -21,3 +21,10 @@
         tasks_from: undeploy.yml
       vars:
         service_id: "{{ service_id_2 }}"
+
+    - name: "Include use - undeploy (service-3)"
+      ansible.builtin.include_role:
+        name: "use"
+        tasks_from: undeploy.yml
+      vars:
+        service_id: "{{ service_id_3 }}"
