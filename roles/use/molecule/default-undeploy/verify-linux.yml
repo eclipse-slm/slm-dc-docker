@@ -29,11 +29,20 @@
 - name: Verify Network delete
   when: docker_compose_file.networks | default({}) | dict2items | list | length == 0
   block:
-  - name: Get Network infos
-    when: docker_compose_file.networks | default({}) | dict2items | list | length == 0
-    community.docker.docker_network_info:
-      name: "{{ service_id }}_default"
-    register: network_info
+    - name: Get Network infos
+      when: docker_compose_file.networks | default({}) | dict2items | list | length == 0
+      community.docker.docker_network_info:
+        name: "{{ service_id }}_default"
+      register: network_info
 
-  - assert:
-      that: network_info.exists == false
+    - assert:
+        that: network_info.exists == false
+
+- name: Run docker network ls
+  command: docker network ls
+  register: docker_net_ls_cmd
+
+- name: Verify Network Count == 3 (bridge, host, none) => 4 lines
+  assert:
+    that: docker_net_ls_cmd.stdout_lines | length == 4
+
