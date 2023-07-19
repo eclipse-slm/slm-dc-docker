@@ -1,20 +1,16 @@
 ---
-- name: Get name of service
+- name: Set service_id and docker_compose_file - service-1
   ansible.builtin.set_fact:
-    service_name: "{{ docker_compose_file.services | first }}"
+    docker_compose_file: "{{ docker_compose_file_1 }}"
+    service_id: "{{ service_id_1 }}"
 
-- name: Get infos on container
-  community.docker.docker_container_info:
-    name: "{{ service_id }}_{{ service_name }}_1"
-  register: container_info
+- name: Include verify helper - service-1
+  ansible.builtin.include_tasks: verify-linux-helper.yml
 
-- assert:
-    that: container_info.container.State.Running == true
+- name: Set service_id and docker_compose_file - service-2
+  ansible.builtin.set_fact:
+    docker_compose_file: "{{ docker_compose_file_2 }}"
+    service_id: "{{ service_id_2 }}"
 
-- name: Get exposed port of service
-  set_fact:
-    service_port: "{{ docker_compose_file.services[service_name].ports[0] }}"
-
-- name: Wait for service port become available
-  wait_for:
-    port: "{{ docker_compose_file.services[service_name].ports[0] | split(':') | first }}"
+- name: Include verify helper - service-2
+  ansible.builtin.include_tasks: verify-linux-helper.yml
