@@ -45,4 +45,4 @@
   loop: "{{ container_networks | dict2items }}"
   when:
     - container_networks | default({}) | dict2items | length > 0
-    - item.key == 'host'
+    - item.key != 'host'
