@@ -6,3 +6,7 @@ docker_compose_file_1_win: "{{ lookup('file', './files/docker-compose-1-win.yml'
 service_id_2: db7b2164-1854-4c43-bd3e-748c2d92511a
 docker_compose_file_2: "{{ lookup('file', './files/docker-compose-2-services.yml') | from_yaml }}"
 docker_compose_file_2_win: "{{ lookup('file', './files/docker-compose-2-win.yml') | from_yaml }}"
+
+service_id_3: 8e806abf-620d-4e4b-ac1d-e5386d8be57c
+docker_compose_file_3: "{{ lookup('file', './files/docker-compose-with-host-network.yml') | from_yaml }}"
+docker_compose_file_3_win: "{{ lookup('file', './files/docker-compose-with-host-network-win.yml') | from_yaml }}"
