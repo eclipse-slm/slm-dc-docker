@@ -33,6 +33,14 @@
             service_id: "{{ service_id_2 }}"
             docker_compose_file: "{{ docker_compose_file_2 }}"
 
+        - name: "Include use - deploy (service-3)"
+          include_role:
+            name: "use"
+            tasks_from: deploy.yml
+          vars:
+            service_id: "{{ service_id_3 }}"
+            docker_compose_file: "{{ docker_compose_file_3 }}"
+
     - name: WINDOWS Deployment
       when: ansible_os_family == "Windows"
       block:
@@ -51,3 +59,11 @@
           vars:
             service_id: "{{ service_id_2 }}"
             docker_compose_file: "{{ docker_compose_file_2_win }}"
+
+        - name: "Include use - deploy (service-3)"
+          include_role:
+            name: "use"
+            tasks_from: deploy.yml
+          vars:
+            service_id: "{{ service_id_3 }}"
+            docker_compose_file: "{{ docker_compose_file_3_win }}"
