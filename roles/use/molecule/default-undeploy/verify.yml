@@ -49,4 +49,24 @@
       when: ansible_os_family == "Windows"
       ansible.builtin.include: verify-win.yml
 
+    ### SERVICE-3:
+
+    - ansible.builtin.set_fact:
+        docker_compose_file: "{{ docker_compose_file_3 }}"
+        service_id: "{{ service_id_3 }}"
+      when: ansible_os_family != "Windows"
+
+    - ansible.builtin.set_fact:
+        docker_compose_file: "{{ docker_compose_file_3_win }}"
+        service_id: "{{ service_id_3 }}"
+      when: ansible_os_family == "Windows"
+
+    - name: Run Linux Verify
+      when: ansible_os_family != "Windows"
+      ansible.builtin.include: verify-linux.yml
+
+    - name: Run Windows Verify
+      when: ansible_os_family == "Windows"
+      ansible.builtin.include: verify-win.yml
+
 
