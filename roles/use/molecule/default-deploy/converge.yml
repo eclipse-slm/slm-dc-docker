@@ -8,11 +8,35 @@
       ansible.builtin.include_vars:
         file: ./vars/main.yml
 
-    - ansible.builtin.set_fact:
-        docker_compose_file: "{{ docker_compose_file_win }}"
+    - name: Converge Windows
       when: ansible_os_family == "Windows"
+      block:
+        - ansible.builtin.set_fact:
+            service_id: "{{ service_id_win }}"
+            docker_compose_file: "{{ docker_compose_file_win }}"
 
-    - name: "Include use - install"
-      ansible.builtin.include_role:
-        name: "use"
-        tasks_from: deploy.yml
+        - name: "Include use - install"
+          ansible.builtin.include_role:
+            name: "use"
+            tasks_from: deploy.yml
+
+    - name: Converge Linux
+      when: ansible_os_family != "Windows"
+      block:
+        - ansible.builtin.set_fact:
+            service_id: "{{ service_id_1 }}"
+            docker_compose_file: "{{ docker_compose_file_1 }}"
+
+        - name: "Include use - install"
+          ansible.builtin.include_role:
+            name: "use"
+            tasks_from: deploy.yml
+
+        - ansible.builtin.set_fact:
+            service_id: "{{ service_id_2 }}"
+            docker_compose_file: "{{ docker_compose_file_2 }}"
+
+        - name: "Include use - install"
+          ansible.builtin.include_role:
+            name: "use"
+            tasks_from: deploy.yml
