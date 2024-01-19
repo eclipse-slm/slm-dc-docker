@@ -1,0 +1,9 @@
+---
+- name: Install docker (ssh)
+  hosts: all
+  gather_facts: yes
+  become: yes
+  tasks:
+    - name: "Include docker - install"
+      ansible.builtin.include_role:
+        name: "docker"
