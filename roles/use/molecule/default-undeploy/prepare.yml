@@ -7,8 +7,7 @@
     - name: "Include setup - install"
       when: ansible_os_family != "Windows"
       ansible.builtin.include_role:
-        name: "setup"
-        tasks_from: install.yml
+        name: "docker"
 
     - name: Include vars file
       include_vars:
