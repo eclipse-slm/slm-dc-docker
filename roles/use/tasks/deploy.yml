@@ -3,7 +3,7 @@
   assert:
     that: "{{ item.name }} is defined"
     fail_msg: "Missing variable '{{ item.name }}': {{ item.description }}"
-  with_items:
+  loop:
     - { name: "service_id",             description: "Id of the service instance that will be deployed." }
     - { name: "docker_compose_file",    description: "Content of Docker Compose file." }
 

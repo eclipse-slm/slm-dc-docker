@@ -8,7 +8,7 @@
       ansible.builtin.assert:
         that: "{{ item.name }} is defined"
         fail_msg: "Missing variable '{{ item.name }}': {{ item.description }}"
-      with_items:
+      loop:
         - { name: "docker_compose_file",    description: "Content of Docker Compose file." }
 
     - name: Use inventory Helper to setup ansible inventory
@@ -41,7 +41,7 @@
             username: "{{ item.username }}"
             password: "{{ item.password }}"
             reauthorize: yes
-          with_items: "{{ docker_registries }}"
+          loop: "{{ docker_registries }}"
           no_log: false
 
 # Does not work with Windows 10 Build 18363.2274
@@ -50,7 +50,7 @@
 #          block:
 #            - name: Do login
 #              ansible.windows.win_command: "docker login {{ item.address }} -u {{ item.username }} -p {{ item.password }}"
-#              with_items: "{{ docker_registries }}"
+#              loop: "{{ docker_registries }}"
 #              no_log: false
 #              become: no
 
@@ -67,11 +67,11 @@
           community.docker.docker_login:
             registry: "{{ item.address }}"
             state: absent
-          with_items: "{{ docker_registries }}"
+          loop: "{{ docker_registries }}"
           no_log: true
 
 #        - name: Do Logout (Windows)
 #          when: ansible_os_family == "Windows"
 #          ansible.windows.win_command: "docker logout {{ item.address }}"
-#          with_items: "{{ docker_registries }}"
+#          loop: "{{ docker_registries }}"
 #          no_log: false

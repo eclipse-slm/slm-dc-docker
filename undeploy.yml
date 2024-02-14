@@ -8,7 +8,7 @@
       assert:
         that: "{{ item.name }} is defined"
         fail_msg: "Missing variable '{{ item.name }}': {{ item.description }}"
-      with_items:
+      loop:
         - { name: "service_id",             description: "Id of the service instance that should be removed." }
 
     - name: Use inventory Helper to setup ansible inventory

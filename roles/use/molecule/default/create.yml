@@ -23,7 +23,7 @@
               'port': "{{ item.port | default('') }}",
               'connection': "{{ item.connection | default('') }}",
               'identity_file': "{{ item.identity_file | default('') }}", }
-          with_items: "{{ server.results }}"
+          loop: "{{ server.results }}"
           register: instance_config_dict
 
         - name: Convert instance config dict to a list
