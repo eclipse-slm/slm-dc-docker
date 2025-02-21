@@ -9,7 +9,7 @@
 
 - name: "Create Docker Compose Stack (Linux)"
   when: ansible_os_family != "Windows"
-  community.docker.docker_compose:
+  community.docker.docker_compose_v2:
     state: "present"
     project_name: "{{ service_id }}"
     definition: "{{ docker_compose_file }}"
