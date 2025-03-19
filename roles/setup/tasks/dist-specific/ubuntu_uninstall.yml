@@ -1,8 +1,0 @@
----
-- name: Uninstall docker engine
-  ansible.builtin.apt:
-    pkg:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-    state: absent
