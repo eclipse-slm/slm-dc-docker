@@ -11,4 +11,9 @@
   include_tasks: dist-specific/raspbian_uninstall.yml
   when:
     - ansible_distribution == 'Debian'
-    - ansible_lsb.id == 'Raspbian'
+    - ansible_lsb is undefined
+
+- name: Include Debian Uninstall Tasks
+  include_tasks: dist-specific/debian_uninstall.yml
+  when:
+    - ansible_distribution == 'Debian'

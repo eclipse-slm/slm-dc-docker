@@ -7,6 +7,12 @@
   ansible.builtin.include_tasks: dist-specific/ubuntu_install.yml
   when: ansible_distribution == 'Ubuntu'
 
+- name: Include Debian Install Tasks
+  ansible.builtin.include_tasks: dist-specific/debian_install.yml
+  when:
+    - ansible_distribution == 'Debian'
+    - ansible_lsb is undefined
+
 - name: Include Raspbian Install Tasks
   ansible.builtin.include_tasks: dist-specific/raspbian_install.yml
   when:
