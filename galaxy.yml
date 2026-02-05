@@ -3,7 +3,7 @@ namespace: fabos
 
 name: docker
 
-version: 1.0.0
+version: 1.0.4
 
 readme: README.md
 
