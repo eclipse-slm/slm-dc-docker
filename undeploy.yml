@@ -6,7 +6,7 @@
   tasks:
     - name: "Check required variables"
       assert:
-        that: "{{ item.name }} is defined"
+        that: item.name is defined
         fail_msg: "Missing variable '{{ item.name }}': {{ item.description }}"
       loop:
         - { name: "service_id",             description: "Id of the service instance that should be removed." }
