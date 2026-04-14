@@ -15,9 +15,9 @@ def scenarios = [
     "centos9": default_test_list,
     "centos8": default_test_list,
     "centos7": default_test_list,
+    "debian13": default_test_list,
     "debian12": default_test_list,
-    "debian11": default_test_list,
-    "debian10": default_test_list
+    "debian11": default_test_list
 ]
 
 parallel_stages = [:]
