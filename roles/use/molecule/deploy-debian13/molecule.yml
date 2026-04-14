@@ -4,20 +4,8 @@ dependency:
 driver:
   name: default
 platforms:
-  - name: centos7
-    image_name: CentOS 7 64-bit
-    groups: ['ssh']
-
-  - name: centos8
-    image_name: CentOS 8 64-bit
-    groups: ['ssh']
-
-  - name: centos9
-    image_name: CentOS 9 Stream 64-bit
-    groups: ['ssh']
-
-  - name: centos10
-    image_name: CentOS 10 Stream 64-bit
+  - name: debian13
+    image_name: Debian 13 64-bit
     groups: ['ssh']
 provisioner:
   name: ansible

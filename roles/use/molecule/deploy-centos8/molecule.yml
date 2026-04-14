@@ -2,16 +2,11 @@
 dependency:
   name: galaxy
 driver:
-  name: delegated
+  name: default
 platforms:
-  - name: centos7
-    image_name: ansible-dev-centos-7
-
   - name: centos8
-    image_name: ansible-dev-centos-8-stream
-
-  - name: centos9
-    image_name: ansible-dev-centos-9-stream
+    image_name: CentOS 8 64-bit
+    groups: ['ssh']
 provisioner:
   name: ansible
   playbooks:

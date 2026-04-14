@@ -4,23 +4,15 @@ dependency:
 driver:
   name: default
 platforms:
-  - name: centos7
-    image_name: CentOS 7 64-bit
-    groups: ['ssh']
-
-  - name: centos8
-    image_name: CentOS 8 64-bit
-    groups: ['ssh']
-
-  - name: centos9
-    image_name: CentOS 9 Stream 64-bit
-    groups: ['ssh']
-
-  - name: centos10
-    image_name: CentOS 10 Stream 64-bit
+  - name: ubuntu1804
+    image_name: Ubuntu 18.04 64-bit
     groups: ['ssh']
 provisioner:
   name: ansible
+  inventory:
+    host_vars:
+      ubuntu1804: 
+        ansible_python_interpreter:  "/usr/local/bin/python3.12"
   playbooks:
     create: ../default/create-os.yml
     destroy: ../default/destroy-os.yml
