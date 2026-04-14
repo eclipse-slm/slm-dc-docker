@@ -1,11 +1,13 @@
+def default_test_list = [
+//  ["title",       "role", "action",   "scenario", "args"],
+    ["install",     "use",  "create",   "deploy",   "--report"],
+    ["deploy",      "use",  "test",     "deploy",   "--destroy never --report"],
+    // ["undeploy",    "use",  "test",     "undeploy", "--destroy never --report"],
+    ["uninstall",   "use",  "cleanup",  "deploy",   "--report"]
+]
+
 def scenarios = [
-    "ubuntu2404": [
-    //  ["title",       "role", "action",   "scenario", "args"],
-        ["install",     "use",  "create",   "deploy",   "--report"],
-        ["deploy",      "use",  "test",     "deploy",   "--destroy never --report"],
-        ["undeploy",    "use",  "test",     "undeploy", "--destroy never --report"],
-        ["uninstall",   "use",  "cleanup",  "deploy",   "--report"]
-    ],
+    "ubuntu2404" = default_test_list,
     // "ubuntu2204": [
     //     ["setup", "install"],
     //     ["use", "deploy"],
@@ -119,13 +121,8 @@ node {
         passwordVariable: 'OS_APPLICATION_CREDENTIAL_SECRET'
     )]) {
 
-        try {
-            parallel(parallel_stages)
-        } finally {
-            stage("Destroy") {
-                sh "cd ./roles/setup && molecule destroy -s install"
-            }
-        }
+        parallel(parallel_stages)
+
     }
 }
 
