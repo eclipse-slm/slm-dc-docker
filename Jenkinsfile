@@ -7,67 +7,17 @@ def default_test_list = [
 ]
 
 def scenarios = [
-    "ubuntu2404" = default_test_list,
-    // "ubuntu2204": [
-    //     ["setup", "install"],
-    //     ["use", "deploy"],
-    //     ["use", "undeploy"],
-    //     ["setup", "uninstall"]
-    // ],
-    // "ubuntu2004": [
-    //     ["setup", "install"],
-    //     ["use", "deploy"],
-    //     ["use", "undeploy"],
-    //     ["setup", "uninstall"]
-    // ],
-    //  "ubuntu1804": [
-    //      ["setup", "install"],
-    //      ["use", "deploy"],
-    //      ["use", "undeploy"],
-    //      ["setup", "uninstall"]
-    //  ],
-    // "centos10": [
-    //    ["setup", "install"],
-    //    ["use", "deploy"],
-    //    ["use", "undeploy"],
-    //    ["setup", "uninstall"]
-    // ],
-    // "centos9": [
-    //    ["setup", "install"],
-    //    ["use", "deploy"],
-    //    ["use", "undeploy"],
-    //    ["setup", "uninstall"]
-    // ],
-    // "centos8": [
-    //    ["setup", "install"],
-    //    ["use", "deploy"],
-    //    ["use", "undeploy"],
-    //    ["setup", "uninstall"]
-    // ],
-    //  "centos7": [
-    //     ["setup", "install"],
-    //     ["use", "deploy"],
-    //     ["use", "undeploy"],
-    //     ["setup", "uninstall"]
-    //  ],
-    // "debian12": [
-    //    ["setup", "install"],
-    //    ["use", "deploy"],
-    //    ["use", "undeploy"],
-    //    ["setup", "uninstall"]
-    // ],
-    // "debian11": [
-    //    ["setup", "install"],
-    //    ["use", "deploy"],
-    //    ["use", "undeploy"],
-    //    ["setup", "uninstall"]
-    // ],
-    //  "debian10": [
-    //     ["setup", "install"],
-    //     ["use", "deploy"],
-    //     ["use", "undeploy"],
-    //     ["setup", "uninstall"]
-    //  ]
+    "ubuntu2404": default_test_list,
+    "ubuntu2204": default_test_list,
+    "ubuntu2004": default_test_list,
+    "ubuntu1804": default_test_list,
+    "centos10": default_test_list,
+    "centos9": default_test_list,
+    "centos8": default_test_list,
+    "centos7": default_test_list,
+    "debian12": default_test_list,
+    "debian11": default_test_list,
+    "debian10": default_test_list
 ]
 
 parallel_stages = [:]
