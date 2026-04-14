@@ -2,22 +2,22 @@ def default_test_list = [
 //  ["title",       "role", "action",   "scenario", "args"],
     ["install",     "use",  "create",   "deploy",   "--report"],
     ["deploy",      "use",  "test",     "deploy",   "--destroy never --report"],
-    // ["undeploy",    "use",  "test",     "undeploy", "--destroy never --report"],
+    ["undeploy",    "use",  "test",     "undeploy", "--destroy never --report"],
     ["uninstall",   "use",  "cleanup",  "deploy",   "--report"]
 ]
 
 def scenarios = [
-    "ubuntu2404": default_test_list,
-    "ubuntu2204": default_test_list,
-    "ubuntu2004": default_test_list,
-    "ubuntu1804": default_test_list,
-    "centos10": default_test_list,
-    "centos9": default_test_list,
-    "centos8": default_test_list,
-    "centos7": default_test_list,
-    "debian13": default_test_list,
-    "debian12": default_test_list,
-    "debian11": default_test_list
+    "ubuntu2404":   default_test_list,
+    "ubuntu2204":   default_test_list,
+    "ubuntu2004":   default_test_list,
+    "ubuntu1804":   default_test_list,
+    "centos10":     default_test_list,
+    "centos9":      default_test_list,
+    "centos8":      default_test_list,
+    "centos7":      default_test_list,
+    "debian13":     default_test_list,
+    "debian12":     default_test_list,
+    "debian11":     default_test_list
 ]
 
 parallel_stages = [:]
