@@ -2,11 +2,11 @@
 # This is an example playbook to execute Ansible tests.
 - name: Verify
   hosts: all
-  gather_facts: yes
-  become: yes
+  gather_facts: true
+  become: true
   tasks:
     - name: Include vars file
-      include_vars:
+      ansible.builtin.include_vars:
         file: ./vars/main.yml
 
     ### SERVICE-1:
@@ -14,59 +14,59 @@
     - ansible.builtin.set_fact:
         docker_compose_file: "{{ docker_compose_file_1 }}"
         service_id: "{{ service_id_1 }}"
-      when: ansible_os_family != "Windows"
+      when: ansible_facts['os_family'] != "Windows"
 
     - ansible.builtin.set_fact:
         docker_compose_file: "{{ docker_compose_file_1_win }}"
         service_id: "{{ service_id_1 }}"
-      when: ansible_os_family == "Windows"
+      when: ansible_facts['os_family'] == "Windows"
 
     - name: Run Linux Verify
-      when: ansible_os_family != "Windows"
-      ansible.builtin.include: verify-linux.yml
+      when: ansible_facts['os_family'] != "Windows"
+      ansible.builtin.include_tasks: verify-linux.yml
 
     - name: Run Windows Verify
-      when: ansible_os_family == "Windows"
-      ansible.builtin.include: verify-win.yml
+      when: ansible_facts['os_family'] == "Windows"
+      ansible.builtin.include_tasks: verify-win.yml
 
     ### SERVICE-2:
 
     - ansible.builtin.set_fact:
         docker_compose_file: "{{ docker_compose_file_2 }}"
         service_id: "{{ service_id_2 }}"
-      when: ansible_os_family != "Windows"
+      when: ansible_facts['os_family'] != "Windows"
 
     - ansible.builtin.set_fact:
         docker_compose_file: "{{ docker_compose_file_2_win }}"
         service_id: "{{ service_id_2 }}"
-      when: ansible_os_family == "Windows"
+      when: ansible_facts['os_family'] == "Windows"
 
     - name: Run Linux Verify
-      when: ansible_os_family != "Windows"
-      ansible.builtin.include: verify-linux.yml
+      when: ansible_facts['os_family'] != "Windows"
+      ansible.builtin.include_tasks: verify-linux.yml
 
     - name: Run Windows Verify
-      when: ansible_os_family == "Windows"
-      ansible.builtin.include: verify-win.yml
+      when: ansible_facts['os_family'] == "Windows"
+      ansible.builtin.include_tasks: verify-win.yml
 
     ### SERVICE-3:
 
     - ansible.builtin.set_fact:
         docker_compose_file: "{{ docker_compose_file_3 }}"
         service_id: "{{ service_id_3 }}"
-      when: ansible_os_family != "Windows"
+      when: ansible_facts['os_family'] != "Windows"
 
     - ansible.builtin.set_fact:
         docker_compose_file: "{{ docker_compose_file_3_win }}"
         service_id: "{{ service_id_3 }}"
-      when: ansible_os_family == "Windows"
+      when: ansible_facts['os_family'] == "Windows"
 
     - name: Run Linux Verify
-      when: ansible_os_family != "Windows"
-      ansible.builtin.include: verify-linux.yml
+      when: ansible_facts['os_family'] != "Windows"
+      ansible.builtin.include_tasks: verify-linux.yml
 
     - name: Run Windows Verify
-      when: ansible_os_family == "Windows"
-      ansible.builtin.include: verify-win.yml
+      when: ansible_facts['os_family'] == "Windows"
+      ansible.builtin.include_tasks: verify-win.yml
 
 
