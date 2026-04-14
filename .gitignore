@@ -4,3 +4,5 @@
 .env
 local.env
 *.log
+roles/use/molecule/default-deploy/roles/use
+roles/use/molecule/default-undeploy/roles/use
