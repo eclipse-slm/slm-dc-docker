@@ -1,9 +1,44 @@
 ---
+- name: Install docker role
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Install docker role
+      ansible.builtin.command:
+        cmd: ansible-galaxy role install -r ../../../requirements.yml
+
+    - name: Ensure Molecule roles directory exists
+      ansible.builtin.file:
+        path: "{{ playbook_dir }}/roles"
+        state: directory
+        mode: "0755"
+
+    - name: Link "use" role for Molecule
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/../../../use"
+        dest: "{{ playbook_dir }}/roles/use"
+        state: link
+        force: true
+
+- name: Prepare for Installation (ssh)
+  hosts: all
+  gather_facts: false
+  become: true
+  vars:
+    state: prepare
+  tasks:
+    - name: Prepare docker host
+      ansible.builtin.include_role:
+        name: "docker"
+
 - name: Install docker (ssh)
   hosts: all
-  gather_facts: yes
-  become: yes
+  gather_facts: true
+  become: true
+  vars:
+    state: present
   tasks:
-    - name: "Include docker - install"
+    - name: Install docker
       ansible.builtin.include_role:
         name: "docker"
