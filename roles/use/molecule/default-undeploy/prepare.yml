@@ -1,12 +1,12 @@
 ---
-- name: Install docker role
+- name: Install required roles
   hosts: localhost
   connection: local
   gather_facts: false
   tasks:
-    - name: Install docker role
+    - name: Install required roles
       ansible.builtin.command:
-        cmd: ansible-galaxy role install -r ../../../requirements.yml
+        cmd: ansible-galaxy role install -f -r ../../../requirements.yml
 
     - name: Ensure Molecule roles directory exists
       ansible.builtin.file:
@@ -21,16 +21,14 @@
         state: link
         force: true
 
-- name: Prepare for Installation (ssh)
+- name: Ensure compatible python version
   hosts: all
   gather_facts: false
   become: true
-  vars:
-    state: prepare
   tasks:
-    - name: Prepare docker host
+    - name: Install Python
       ansible.builtin.include_role:
-        name: "docker"
+        name: slm-ansible-role-python
 
 - name: Prepare
   hosts: all

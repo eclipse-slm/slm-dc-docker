@@ -6,5 +6,9 @@ roles:
     name: inventory_helper
   - src: "git+https://github.com/eclipse-slm/slm-ansible-role-docker"
     scm: git
-    version: 1.0.6
+    version: 1.0.7
     name: docker
+  - src: "git+https://github.com/eclipse-slm/slm-ansible-role-python"
+    scm: git
+    version: main
+    name: slm-ansible-role-python
